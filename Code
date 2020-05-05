@@ -1,0 +1,24 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(14, GPIO.OUT)
+GPIO.setup(15, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
+
+userInput = input
+while userInput != "q":
+    userInput = input("Press a button to turn on the LED:")
+    if userInput == "g":
+        GPIO.output(14, True)
+    else:
+        GPIO.output(14, False)
+    if userInput == "y":
+        GPIO.output(15, True)
+    else:
+        GPIO.output(15, False)
+    if userInput == "r":
+        GPIO.output(23, True)
+    else:
+        GPIO.output(23, False)
+    if userInput == "q":
+        print("Thanks")
