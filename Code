@@ -3,51 +3,41 @@ import tkFont
 from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
-
-led0 = LED(14)
-led1 = LED(15)
-led2 = LED(23)
-
-
+green = LED(14)
+red = LED(15)
+yellow = LED(18)
 win = Tk()
 win.title("LED Toggler")
 myFont = tkFont.Font(family = 'Helvetica', size = '12', weight = "bold")
-
-
-def led0Toggle():
-    if led0.is_lit:
-       led0.off()
-       led0Button["text"] = "Green Turn LED on"
+def greenToggle():
+    if green.is_lit:
+       green.off()
+       greenButton["text"] = "Green Turn LED on"
     else:
-       led0.on()
-       led0Button["Text"] = "Green Turn LED off"
-def led1Toggle():
-    if led1.is_lit:
-       led1.off()
-       led1Button["text"] = "Red Turn LED on"
+       green.on()
+       greenButton["Text"] = "Green Turn LED off"
+def redToggle():
+    if red.is_lit:
+       red.off()
+       redButton["text"] = "Red Turn LED on"
     else:
-       led1.on()
-       led1Button["Text"] = "Red Turn LED off"
-def led2Toggle():
-    if led2.is_lit:
-       led2.off()
-       led2Button["text"] = "Yellow Turn LED on"
+       red.on()
+       redButton["Text"] = "Red Turn LED off"
+def yellowToggle():
+    if yellow.is_lit:
+       yellow.off()
+       yellowButton["text"] = "Yellow Turn LED on"
     else:
-       led2.on()
-       led2Button["Text"] = "Yellow Turn LED off"
-
+       yellow.on()
+       yellowButton["Text"] = "Yellow Turn LED off"
 def close():
         RPi.GPIO.cleanup()
         win.destroy()
-
-led0Button = Button(win, text = 'Green LED Turn On', font = myFont, command = led0Toggle,bg = 'bisque2', height = 1, width = 22)
-led0Button.grid(row =0, column = 1)
-
-led1Button = Button(win, text = 'Red  LED Turn On', font = myFont, command = led1Toggle,bg = 'bisque2', height = 1, width = 22)
-led1Button.grid(row =0, column = 3)
-
-led2Button = Button(win, text = 'Yellow LED Turn On', font = myFont, command = led2Toggle,bg = 'bisque2', height = 1, width = 22)
-led2Button.grid(row =0, column = 5)
-
+greenButton = Button(win, text = 'Green LED Turn On', font = myFont, command = greenToggle,bg = 'bisque2', height = 1, width = 22)
+greenButton.grid(row =0, column = 1)
+redButton = Button(win, text = 'Red  LED Turn On', font = myFont, command = redToggle,bg = 'bisque2', height = 1, width = 22)
+redButton.grid(row =0, column = 3)
+yellowButton = Button(win, text = 'Yellow LED Turn On', font = myFont, command = yellowToggle,bg = 'bisque2', height = 1, width = 22)
+yellowButton.grid(row =0, column = 5)
 win.protocol("WM DELETE WINDOM", close) 
 win.mainloop()
